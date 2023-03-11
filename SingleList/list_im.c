@@ -43,7 +43,7 @@ int list_ins_next(List list,Element element,const void *data)
 		return -1;
 
 	new_element->data = (void*)data;
-	
+
 	if (element == NULL) {
 		if (list_size(list) == 0) 
 		list->tail = new_element;
@@ -93,3 +93,78 @@ int list_rem_next(List list,Element element,void **data)
 	list->size--;
 	return 0;
 }
+
+int printList(List mingList)
+{
+        Element newNode;
+        newNode = mingList->head;
+
+        do {
+                int* a = (int*)(newNode->data);
+                newNode = newNode->next;
+                printf("%d\n",*a);
+        }while(newNode);
+
+}
+
+int printFromHead(PtrToNode head)
+{
+	Element  newNode = head;
+        do {
+                int* a = (int*)(newNode->data);
+                newNode = newNode->next;
+                printf("%d\n",*a);
+        }while(newNode);
+	
+}
+
+/*
+*********************************************
+*Reverse single list recursively
+*********************************************
+*/
+
+PtrToNode reverseList(PtrToNode head)
+{
+	PtrToNode newHead;
+
+	if (head == NULL || head->next == NULL)  {
+		return head;
+	} else {
+		newHead = reverseList(head->next);
+		head->next->next = head;
+		head->next = NULL;
+		return newHead;
+	}
+}
+
+/*
+**********************************************
+*Convert single list to simple loop list
+**********************************************
+*/
+
+PtrToNode SingleToLoop(List mingList)
+{
+	PtrToNode headTemp,iter,final;
+	
+	headTemp = mingList->head;
+
+	iter = headTemp->next;
+	while(iter->next) {
+		iter = iter->next;
+	}
+	iter -> next =  headTemp;
+	final = headTemp;
+	return final;
+}
+
+
+
+
+
+
+
+
+
+

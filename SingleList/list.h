@@ -39,6 +39,11 @@ struct list {
 void list_init(List list,void (*destroy)(void *data));
 void list_destroy(List list);
 int list_rem_next(List list,Element element,void **data);
+int list_ins_next(List list,Element element,const void *data);
+int printList(List mingList);
+int printFromHead(PtrToNode head);
+PtrToNode reverseList(PtrToNode head);
+PtrToNode SingleToLoop(List mingList);
 
 #define list_size(list) list->size
 #define	list_head(list) list->head
@@ -47,6 +52,5 @@ int list_rem_next(List list,Element element,void **data);
 #define list_is_tail(element) element->next == NULL ? 1 : 0
 #define list_data(element) element->data
 #define list_next(element) element->next
-
 
 #endif
